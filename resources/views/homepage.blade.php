@@ -13,10 +13,10 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="{{ route('register.create') }}">Register</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('login1') }}">Login</a>
+        <a class="nav-link" href="{{ route('login.create') }}">Login</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
