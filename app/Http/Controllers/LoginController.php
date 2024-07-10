@@ -18,4 +18,9 @@ class LoginController extends Controller
         }
         return redirect()->route('login.create');
     }
+
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('login.create');
+    }
 }

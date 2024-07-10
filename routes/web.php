@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterUserController;
-use App\Http\Middleware\EnsureTokenIsValid;
-use App\Http\Controllers\UserPageController;
-use App\Http\Controllers\GuestPageController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\EnsureUserIsAuthenticated;
 
@@ -35,6 +32,8 @@ Route::get('/user-list', [UserController::class, 'index'])->name('user.list');
 
 Route::middleware([EnsureUserIsAuthenticated::class])->group(function() {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 
