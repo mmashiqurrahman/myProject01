@@ -32,4 +32,11 @@
   </div>
 </nav>
 
+<br>
+
+<div class="container">
+  <h2>This is your Profile page.</h2>
+  
+</div>
+
 @endsection

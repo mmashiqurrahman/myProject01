@@ -6,6 +6,8 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Controllers\UserPageController;
 use App\Http\Controllers\GuestPageController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\EnsureUserIsAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +30,14 @@ Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
-Route::post('/user-page-01', [UserPageController::class, 'userpage01'])->middleware(EnsureTokenIsValid::class)->name('user.page01');
-Route::get('/user-page-02', [UserPageController::class, 'userpage02'])->middleware(EnsureTokenIsValid::class)->name('user.page02');
-Route::get('/guest-page-01', [GuestPageController::class, 'guestpage01'])->name('guest.page01');
-Route::post('/guest-page-01', [GuestPageController::class, 'guestpage01post'])->name('guest.page01.post');
+
+Route::get('/user-list', [UserController::class, 'index'])->name('user.list');
+
+Route::middleware([EnsureUserIsAuthenticated::class])->group(function() {
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+});
+
+
 
 
 

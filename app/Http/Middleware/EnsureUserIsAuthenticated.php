@@ -5,8 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
-class EnsureTokenIsValid
+class EnsureUserIsAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -15,10 +16,9 @@ class EnsureTokenIsValid
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // dd($request->input('token'));
-        if($request->input('token') != 'camel-case') {
-            return redirect()->route('login.create');
+        if(Auth::check()) {
+            return $next($request);
         }
-        return $next($request);
+        return redirect()->route('homepage');
     }
 }
