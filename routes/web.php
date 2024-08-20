@@ -29,6 +29,8 @@ Route::post('/register', [RegisterUserController::class, 'store'])->name('regist
 
 
 Route::get('/user-list', [UserController::class, 'index'])->name('user.list');
+Route::get('/get-users', [UserController::class, 'getUsers'])->name('get.users');
+
 
 Route::middleware([EnsureUserIsAuthenticated::class])->group(function() {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');

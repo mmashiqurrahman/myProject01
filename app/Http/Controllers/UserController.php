@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
 {
     public function index() {
         $users = User::all();
         return view('userlist', ['users' => $users]);
+    }
+
+    public function getUsers() {
+        return DataTables::of(User::query())->make(true);
     }
 
     public function profile() {
