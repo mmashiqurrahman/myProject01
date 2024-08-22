@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 use App\Http\Middleware\EnsureUserIsAuthenticated;
 
 /*
@@ -17,9 +18,15 @@ use App\Http\Middleware\EnsureUserIsAuthenticated;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('homepage');
 })->name('homepage');
+
+Route::get('/role-list', [RoleController::class, 'index'])->name('role.list');
+Route::get('/add-role', [RoleController::class, 'create'])->name('role.create');
+Route::post('/add-role', [RoleController::class, 'store'])->name('role.store');
+
+
 
 Route::get('/login', [LoginController::class, 'create'])->name('login.create');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
