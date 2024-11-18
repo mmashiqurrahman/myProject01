@@ -10,7 +10,7 @@
     <!-- Name input -->
     <div class="form-outline mb-4">
       <input type="text" id="form2Example0" class="form-control" name="name" />
-      <label class="form-label" for="form2Example0">Name</label>
+      <label class="form-label" for="form2Example0">Role Name</label>
     </div>
     <!-- Submit button -->
     <button type="submit" class="btn btn-primary btn-block mb-4">Add Role</button>

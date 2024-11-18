@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 
@@ -11,7 +12,8 @@ use Exception;
 class RegisterUserController extends Controller
 {
     public function create() {
-        return view('register');
+        $roles = Role::all();
+        return view('register', ['roles' => $roles]);
     }
 
     public function store(Request $request) {
@@ -19,6 +21,7 @@ class RegisterUserController extends Controller
         try{
             $user = User::create([
                 'name' => $request->name,
+                'role_id' => $request->role_id,
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);

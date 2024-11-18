@@ -12,6 +12,15 @@
     </div>
 
     <div class="form-outline mb-4">
+      <select name="role_id" id="role_id">
+        @foreach($roles as $role)
+          <option value="{{ $role->id }}">{{ $role->name }}</option>
+        @endforeach
+      </select>
+      <label class="form-label" for="role_id">Role</label>
+    </div>
+
+    <div class="form-outline mb-4">
       <input type="email" id="form2Example1" class="form-control" name="email" />
       <label class="form-label" for="form2Example1">Email address</label>
     </div>
