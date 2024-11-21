@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserPosts;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Exception;
@@ -14,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = UserPosts::all();
+        $posts = DB::table('user_posts')
+        ->join('users', 'users.id', '=', 'user_posts.user_id')
+        ->select('user_posts.*', 'users.name as poster_name', 'users.id as poster_id')
+        ->get();
         return view('posts', ['posts' => $posts]);
     }
 
@@ -47,9 +51,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserPosts $userPosts)
+    public function show(Request $request)
     {
-        //
+        $post = DB::table('user_posts')
+        ->join('users', 'users.id', '=', 'user_posts.user_id')
+        ->where('user_posts.id', '=', $request->id)
+        ->select('user_posts.*', 'users.name as poster_name', 'users.id as poster_id')
+        ->first();
+        
+        return view('selected-post', ['post' => $post]);
     }
 
     /**

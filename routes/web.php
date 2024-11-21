@@ -49,6 +49,9 @@ Route::middleware([EnsureUserIsAuthenticated::class])->group(function() {
 
     Route::get('/add-post', [PostController::class, 'create'])->name('post.create');
     Route::post('/add-post', [PostController::class, 'store'])->name('post.store');
+
+    Route::get('/post-details/{id}', [PostController::class, 'show'])->name('post.details');
+
 });
 
 
