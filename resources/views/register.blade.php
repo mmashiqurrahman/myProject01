@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('contents')
-<div class="container">
+<div class="container col-6">
+  <h3>Sign Up</h3>
+  <br>
 
   <form method="POST" action="/register">
     @csrf
@@ -12,7 +14,7 @@
     </div>
 
     <div class="form-outline mb-4">
-      <select name="role_id" id="role_id">
+      <select class="form-control" name="role_id" id="role_id">
         @foreach($roles as $role)
           <option value="{{ $role->id }}">{{ $role->name }}</option>
         @endforeach

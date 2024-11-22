@@ -20,20 +20,21 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('role.list') }}">Roles</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('register.create') }}">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login.create') }}">Login</a>
-            </li>
+
+            @if (Auth::guest())
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('register.create') }}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('login.create') }}">Login</a>
+              </li>
+            @endif
+            
             <li class="nav-item">
               <a class="nav-link" href="{{ route('user.list') }}">User List</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('post.list') }}">Posts</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('user.list') }}">Comments</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('role.create') }}">Add Roles</a>
@@ -42,9 +43,6 @@
             @if (Auth::check())
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('post.create') }}">Add Posts</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.list') }}">Add Comments</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
