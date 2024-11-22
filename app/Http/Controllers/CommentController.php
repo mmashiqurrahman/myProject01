@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PostComments;
+use Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -18,9 +19,10 @@ class CommentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($post_id)
     {
-        return view('');
+        $user = Auth::user();
+        return view('addcomment', ['commenter_id' => $user->id, 'post_id' => $post_id]);
     }
 
     /**
@@ -28,7 +30,16 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            PostComments::create([
+                'comment' => $request->comment,
+                'post_id' => $request->post_id,
+                'commenter_id' => $request->commenter_id
+            ]);
+            return redirect()->route('user.profile');
+        } catch(\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**

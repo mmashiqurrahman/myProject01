@@ -58,8 +58,14 @@ class PostController extends Controller
         ->where('user_posts.id', '=', $request->id)
         ->select('user_posts.*', 'users.name as poster_name', 'users.id as poster_id')
         ->first();
+
+        $comments = DB::table('post_comments')
+        ->join('users', 'users.id', '=', 'post_comments.commenter_id')
+        ->where('post_comments.post_id', '=', $request->id)
+        ->select('post_comments.comment', 'users.name as commenter')
+        ->get();
         
-        return view('selected-post', ['post' => $post]);
+        return view('selected-post', ['post' => $post, 'comments' => $comments]);
     }
 
     /**

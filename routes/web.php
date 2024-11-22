@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterUserController;
@@ -51,6 +52,10 @@ Route::middleware([EnsureUserIsAuthenticated::class])->group(function() {
     Route::post('/add-post', [PostController::class, 'store'])->name('post.store');
 
     Route::get('/post-details/{id}', [PostController::class, 'show'])->name('post.details');
+
+    Route::get('/add-comment/{post_id}', [CommentController::class, 'create'])->name('comment.create');
+    Route::post('/add-comment', [CommentController::class, 'store'])->name('comment.store');
+
 
 });
 
