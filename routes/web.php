@@ -43,7 +43,7 @@ Route::get('/get-users', [UserController::class, 'getUsers'])->name('get.users')
 Route::get('/post-list', [PostController::class, 'index'])->name('post.list');
 
 
-Route::middleware([EnsureUserIsAuthenticated::class])->group(function() {
+Route::middleware(['authfast'])->group(function() {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
