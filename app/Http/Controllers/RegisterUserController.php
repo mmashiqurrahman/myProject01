@@ -18,6 +18,11 @@ class RegisterUserController extends Controller
 
     public function store(Request $request) {
 
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users'
+        ]);
+
         try{
             $user = User::create([
                 'name' => $request->name,
