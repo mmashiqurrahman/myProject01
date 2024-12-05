@@ -17,18 +17,23 @@ class RegisterUserController extends Controller
     }
 
     public function store(Request $request) {
-
+        
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users'
+            'email' => 'required|unique:users',
+            'image' => 'required'
         ]);
+
+        $path = $request->image->store('public');
+        $path = str_replace('public', 'storage', $path);
 
         try{
             $user = User::create([
                 'name' => $request->name,
                 'role_id' => $request->role_id,
                 'email' => $request->email,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'image' => $path
             ]);
             return redirect()->route('homepage');
         } catch(Exception $e) {

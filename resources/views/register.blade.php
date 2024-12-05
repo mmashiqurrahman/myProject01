@@ -5,7 +5,7 @@
   <h3>Sign Up</h3>
   <br>
 
-  <form method="POST" action="/register">
+  <form method="POST" action="/register" enctype="multipart/form-data">
     @csrf
     <!-- Name input -->
     <div class="form-outline mb-4">
@@ -37,6 +37,11 @@
     <div class="form-outline mb-4">
       <input type="password" id="form2Example2" class="form-control" name="password" />
       <label class="form-label" for="form2Example2">Password</label>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="file" id="form2Example4" class="form-control" name="image" />
+      <label class="form-label" for="form2Example4">Profile Photo</label>
     </div>
 
     <!-- Submit button -->
