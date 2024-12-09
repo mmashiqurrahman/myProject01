@@ -56,4 +56,9 @@ class UserController extends Controller
             return $e->getMessage();
         }
     }
+
+    public function downloadImage() {
+        $user = Auth::user();
+        return response()->download($user->image);
+    }
 }

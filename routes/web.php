@@ -58,6 +58,7 @@ Route::middleware(['authfast'])->group(function() {
 
     Route::get('/change-image', [UserController::class, 'changeImage'])->name('change.image');
     Route::post('/change-image', [UserController::class, 'updateImage'])->name('update.image');
+    Route::get('/download-image', [UserController::class, 'downloadImage'])->name('download.image');
 });
 
 
