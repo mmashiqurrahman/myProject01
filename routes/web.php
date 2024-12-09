@@ -56,7 +56,8 @@ Route::middleware(['authfast'])->group(function() {
     Route::get('/add-comment/{post_id}', [CommentController::class, 'create'])->name('comment.create');
     Route::post('/add-comment', [CommentController::class, 'store'])->name('comment.store');
 
-
+    Route::get('/change-image', [UserController::class, 'changeImage'])->name('change.image');
+    Route::post('/change-image', [UserController::class, 'updateImage'])->name('update.image');
 });
 
 
