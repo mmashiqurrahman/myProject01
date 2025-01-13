@@ -25,6 +25,8 @@ Route::get('/', function() {
     return view('homepage');
 })->name('homepage');
 
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+
 Route::get('/role-list', [RoleController::class, 'index'])->name('role.list');
 Route::get('/add-role', [RoleController::class, 'create'])->name('role.create');
 Route::post('/add-role', [RoleController::class, 'store'])->name('role.store');
