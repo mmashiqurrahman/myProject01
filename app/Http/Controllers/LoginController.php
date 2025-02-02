@@ -12,6 +12,8 @@ class LoginController extends Controller
         return view('login');
     }
 
+// This this the Login Controller.
+
     public function store(Request $request) {
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials)) {
