@@ -7,7 +7,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\BroadcastController;
 use App\Http\Middleware\EnsureUserIsAuthenticated;
 
 /*
@@ -24,6 +24,10 @@ use App\Http\Middleware\EnsureUserIsAuthenticated;
 Route::get('/', function() {
     return view('homepage');
 })->name('homepage');
+
+Route::get('/public-comments', [BroadcastController::class, 'publicComments'])->name('public.comments');
+Route::post('/broadcast', [BroadcastController::class, 'broadcast'])->name('broadcast');
+Route::post('/receive', [BroadcastController::class, 'receive'])->name('receive');
 
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 
