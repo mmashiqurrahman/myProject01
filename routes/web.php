@@ -25,10 +25,6 @@ Route::get('/', function() {
     return view('homepage');
 })->name('homepage');
 
-Route::get('/public-comments', [BroadcastController::class, 'publicComments'])->name('public.comments');
-Route::post('/broadcast', [BroadcastController::class, 'broadcast'])->name('broadcast');
-Route::post('/receive', [BroadcastController::class, 'receive'])->name('receive');
-
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 
 Route::get('/role-list', [RoleController::class, 'index'])->name('role.list');
@@ -65,6 +61,10 @@ Route::middleware(['authfast'])->group(function() {
     Route::get('/change-image', [UserController::class, 'changeImage'])->name('change.image');
     Route::post('/change-image', [UserController::class, 'updateImage'])->name('update.image');
     Route::get('/download-image', [UserController::class, 'downloadImage'])->name('download.image');
+
+    Route::get('/central-messages', [BroadcastController::class, 'centralMessages'])->name('central.messages');
+    Route::post('/broadcast', [BroadcastController::class, 'broadcast'])->name('broadcast');
+    Route::post('/receive', [BroadcastController::class, 'receive'])->name('receive');
 });
 
 

@@ -11,12 +11,11 @@
     <div class="messages">
         <div class="top">
             <div>
-                <p>Ross Edlin</p>
-                <small>Online</small>
+                <a class="navbar-brand" href="/">CompanyLogo</a>
             </div>
         </div>
         <div class="message">
-            @include('receive', ['message' => 'Hello there. How are you doing?'])
+            @include('receive', ['message' => 'Here are the messages.'])
         </div>
         <div class="bottom">
             <form>
@@ -55,7 +54,7 @@
             },
             data: {
                 _token: '{{ csrf_token() }}',
-                message: $("form input[name='message']").val(),
+                message: '{{ Auth::user()->name }}' + $("form input[name='message']").val(),
             }
         }).done(function (res) {
             $(".messages > .message").last().after(res);

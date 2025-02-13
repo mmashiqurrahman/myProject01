@@ -7,7 +7,7 @@ use App\Events\BroadcastEvent;
 
 class BroadcastController extends Controller
 {
-    public function publicComments() {
+    public function centralMessages() {
         return view('index');
     }
 
