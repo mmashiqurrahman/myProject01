@@ -16,12 +16,14 @@ class BroadcastEvent implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public string $message;
+    public string $user_name;
     /**
      * Create a new event instance.
      */
-    public function __construct(string $message)
+    public function __construct(string $message, string $user_name)
     {
         $this->message = $message;
+        $this->user_name = $user_name;
     }
 
     /**

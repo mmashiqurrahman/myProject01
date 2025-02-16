@@ -14,8 +14,9 @@
                 <a class="navbar-brand" href="/">CompanyLogo</a>
             </div>
         </div>
+        <br><hr>
         <div class="message">
-            @include('receive', ['message' => 'Here are the messages.'])
+            <p>Here are the messages.</p> <br>
         </div>
         <div class="bottom">
             <form>
@@ -36,6 +37,7 @@
         $.post("/receive", {
             _token: '{{ csrf_token() }}',
             message: data.message,
+            user_name: data.user_name,
         })
             .done(function (res) {
                 $(".messages > .message").last().after(res);
@@ -54,7 +56,8 @@
             },
             data: {
                 _token: '{{ csrf_token() }}',
-                message: '{{ Auth::user()->name }}' + $("form input[name='message']").val(),
+                message: $("form input[name='message']").val(),
+                user_name: '{{ Auth::user()->name }}',
             }
         }).done(function (res) {
             $(".messages > .message").last().after(res);
