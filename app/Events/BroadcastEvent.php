@@ -31,9 +31,9 @@ class BroadcastEvent implements ShouldBroadcastNow
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
-        return ['public'];
+        return new PrivateChannel('public');
     }
 
     public function broadcastAs(): string

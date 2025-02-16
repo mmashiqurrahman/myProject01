@@ -1,3 +1,3 @@
-<div class="right message">
+<div class="message">
     <p><b>{{ $user_name }}</b>: {{ $message }}</p>
 </div>

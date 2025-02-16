@@ -27,13 +27,20 @@
     </div>
 </body>
 <script>
-    const pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {cluster: 'eu'});
-    const channel = pusher.subscribe('public');
-    console.log("{{ config('broadcasting.connections.pusher.key') }}");
+    const pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
+        cluster: 'eu',
+        authEndpoint: '/broadcasting/auth', // Laravel default auth route
+        auth: {
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}", // Include CSRF token for Laravel authentication
+            }
+        }
+    });
+    const channel = pusher.subscribe('private-public');
 
     channel.bind('chat', function (data) {
         console.log('Event fired and received from Pusher.');
-        console.log(data.message);
+        console.log(data);
         $.post("/receive", {
             _token: '{{ csrf_token() }}',
             message: data.message,
