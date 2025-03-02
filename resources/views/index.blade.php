@@ -16,6 +16,7 @@
         </div>
         <br><hr>
         <div class="message">
+            <p>Channel Name: {{ $channelname }}</p> <br>
             <p>Here are the messages.</p> <br>
         </div>
         <div class="bottom">
@@ -36,7 +37,8 @@
             }
         }
     });
-    const channel = pusher.subscribe('private-public');
+    console.log('private-{{ $channelname }}');
+    const channel = pusher.subscribe('private-{{ $channelname }}');
 
     channel.bind('chat', function (data) {
         console.log('Event fired and received from Pusher.');
@@ -65,6 +67,7 @@
                 _token: '{{ csrf_token() }}',
                 message: $("form input[name='message']").val(),
                 user_name: '{{ Auth::user()->name }}',
+                channelname: '{{ $channelname }}',
             }
         }).done(function (res) {
             $(".messages > .message").last().after(res);

@@ -62,9 +62,11 @@ Route::middleware(['authfast'])->group(function() {
     Route::post('/change-image', [UserController::class, 'updateImage'])->name('update.image');
     Route::get('/download-image', [UserController::class, 'downloadImage'])->name('download.image');
 
-    Route::get('/central-messages', [BroadcastController::class, 'centralMessages'])->name('central.messages');
+    Route::get('/chat/{fromuser}/{touser}', [BroadcastController::class, 'chat'])->name('chat');
     Route::post('/broadcast', [BroadcastController::class, 'broadcast'])->name('broadcast');
     Route::post('/receive', [BroadcastController::class, 'receive'])->name('receive');
+
+    Route::get('/friends', [UserController::class, 'friends'])->name('friends');
 });
 
 

@@ -17,13 +17,15 @@ class BroadcastEvent implements ShouldBroadcastNow
 
     public string $message;
     public string $user_name;
+    public string $channelname;
     /**
      * Create a new event instance.
      */
-    public function __construct(string $message, string $user_name)
+    public function __construct(string $message, string $user_name, string $channelname)
     {
         $this->message = $message;
         $this->user_name = $user_name;
+        $this->channelname = $channelname;
     }
 
     /**
@@ -33,7 +35,7 @@ class BroadcastEvent implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('public');
+        return new PrivateChannel($this->channelname);
     }
 
     public function broadcastAs(): string

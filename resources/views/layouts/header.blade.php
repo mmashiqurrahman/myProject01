@@ -51,7 +51,7 @@
                 <a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('central.messages') }}">Central Messages</a>
+                <a class="nav-link" href="{{ route('friends') }}">Friends</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}">Log out</a>

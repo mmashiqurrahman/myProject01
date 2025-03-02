@@ -15,6 +15,11 @@ class UserController extends Controller
         return view('userlist');
     }
 
+    public function friends() {
+        $users = User::all();
+        return view('friends', ['users' => $users]);
+    }
+
     public function getUsers() {
         return DataTables::of(User::query())
         ->addColumn('role', function(User $user) {

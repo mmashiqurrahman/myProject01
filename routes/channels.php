@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('public', function ($user) {
+Broadcast::channel('ch.{fromuser}.{touser}', function ($user) {
         return true;
 });
