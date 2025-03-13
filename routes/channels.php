@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('ch.{fromuser}.{touser}', function ($user) {
-        return true;
+Broadcast::channel('ch.{fromuser}.{touser}', function ($user, $fromuser, $touser) {
+        if($user->id == $fromuser || $user->id == $touser) {
+                Log::info('User: '.$user->id.' tried to access Channel: ch.'.$fromuser.'.'.$touser);
+                return true;
+        } else {
+                return false;
+        }
 });

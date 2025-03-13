@@ -17,7 +17,7 @@ class BroadcastEvent implements ShouldBroadcastNow
 
     public string $message;
     public string $user_name;
-    public string $channelname;
+    protected string $channelname;
     /**
      * Create a new event instance.
      */
