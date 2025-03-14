@@ -16,7 +16,9 @@
         </div>
         <br><hr>
         <div class="message">
-            <p>Channel Name: {{ $channelname }}</p> <br>
+            <p>Channel Name: {{ $channelname }}</p>
+            <p>FromUserId: {{ $fromuser }}</p>
+            <p>ToUserId: {{ $touser }}</p> <br>
             <p>Here are the messages.</p> <br>
         </div>
         <div class="bottom">
@@ -68,6 +70,8 @@
                 message: $("form input[name='message']").val(),
                 user_name: '{{ Auth::user()->name }}',
                 channelname: '{{ $channelname }}',
+                fromuser: '{{ $fromuser }}',
+                touser: '{{ $touser }}',
             }
         }).done(function (res) {
             $(".messages > .message").last().after(res);

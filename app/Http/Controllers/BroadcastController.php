@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Events\BroadcastEvent;
 use App\Models\Channel;
+use App\Models\Text;
 
 class BroadcastController extends Controller
 {
@@ -32,11 +33,20 @@ class BroadcastController extends Controller
             } 
         }
 
-        return view('index', ['channelname' => $channelName]);
+        return view('index', ['channelname' => $channelName, 'fromuser' => $request->fromuser, 'touser' => $request->touser]);
     }
 
     public function broadcast(Request $request ) {
         broadcast(new BroadcastEvent($request->message, $request->user_name, $request->channelname))->toOthers();
+        try {
+            Text::create([
+                'fromuser' => $request->fromuser,
+                'touser' => $request->touser,
+                'content' => $request->message,
+            ]);
+        } catch (\Exception $e) {
+            dd($e);
+        }
         return view('broadcast', ['message' => $request->message, 'user_name' => $request->user_name]);
     }
 
