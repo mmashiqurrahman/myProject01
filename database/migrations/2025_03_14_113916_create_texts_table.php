@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('fromuser');
             $table->unsignedInteger('touser');
+            $table->string('channelname');
             $table->string('content');
             $table->timestamps();
         });

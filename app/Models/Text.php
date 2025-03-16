@@ -12,6 +12,7 @@ class Text extends Model
     protected $fillable = [
         'fromuser',
         'touser',
+        'channelname',
         'content',
     ];
 }

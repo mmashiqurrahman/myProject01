@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Events\BroadcastEvent;
 use App\Models\Channel;
 use App\Models\Text;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class BroadcastController extends Controller
 {
@@ -33,7 +35,18 @@ class BroadcastController extends Controller
             } 
         }
 
-        return view('index', ['channelname' => $channelName, 'fromuser' => $request->fromuser, 'touser' => $request->touser]);
+        $texts = Text::where('channelname', $channelName)->get();
+        $you = User::find($request->fromuser);
+        $oppositeParty = User::find($request->touser);
+
+        return view('index', [
+            'channelname' => $channelName,
+            'fromuser' => $request->fromuser,
+            'touser' => $request->touser,
+            'texts' => $texts,
+            'you' => $you,
+            'oppositeParty' => $oppositeParty
+        ]);
     }
 
     public function broadcast(Request $request ) {
@@ -42,6 +55,7 @@ class BroadcastController extends Controller
             Text::create([
                 'fromuser' => $request->fromuser,
                 'touser' => $request->touser,
+                'channelname' => $request->channelname,
                 'content' => $request->message,
             ]);
         } catch (\Exception $e) {

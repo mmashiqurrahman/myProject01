@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body>
-    <div class="messages">
+    <div class="messages" style="max-width: 400px;">
         <div class="top">
             <div>
                 <a class="navbar-brand" href="/">CompanyLogo</a>
@@ -19,8 +19,17 @@
             <p>Channel Name: {{ $channelname }}</p>
             <p>FromUserId: {{ $fromuser }}</p>
             <p>ToUserId: {{ $touser }}</p> <br>
-            <p>Here are the messages.</p> <br>
+            <p>Here are the messages.</p>
         </div>
+        @foreach($texts as $text)
+            <div class="message">
+                @if($you->id == $text->fromuser)
+                    <p style="text-align: right;"><b>You</b>: {{ $text->content }}</p>
+                @else
+                   <p><b>{{ $oppositeParty->name }}</b>: {{ $text->content }}</p>
+                @endif
+            </div>
+        @endforeach
         <div class="bottom">
             <form>
                 <input type="text" id="message" name="message" placeholder="Enter message..." autocomplete="off">
