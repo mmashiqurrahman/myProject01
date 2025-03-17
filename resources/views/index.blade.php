@@ -40,7 +40,11 @@
 </body>
 <script>
     const pusher = new Pusher("{{ config('broadcasting.connections.pusher.key') }}", {
-        cluster: 'eu',
+        wsHost: "127.0.0.1",  // Use your server's domain or IP
+        wsPort: 6001,  // Laravel WebSockets default port
+        forceTLS: false,  // Set to true if using HTTPS
+        disableStats: true,  // Avoid making requests to Pusher's stats service
+        enabledTransports: ["ws", "wss"],  // Use WebSockets only
         authEndpoint: '/broadcasting/auth', // Laravel default auth route
         auth: {
             headers: {
