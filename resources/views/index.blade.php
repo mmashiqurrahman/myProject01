@@ -24,9 +24,9 @@
         @foreach($texts as $text)
             <div class="message">
                 @if($you->id == $text->fromuser)
-                    <p style="text-align: right;"><b>You</b>: {{ $text->content }}</p>
+                    <p style="text-align: right; background-color: #99ffff; padding: 5px;"><b>You</b>: {{ $text->content }}</p>
                 @else
-                   <p><b>{{ $oppositeParty->name }}</b>: {{ $text->content }}</p>
+                   <p style="background-color: #ffff99; padding: 5px;"><b>{{ $oppositeParty->name }}</b>: {{ $text->content }}</p>
                 @endif
             </div>
         @endforeach
