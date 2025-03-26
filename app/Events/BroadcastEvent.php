@@ -10,8 +10,9 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
-class BroadcastEvent implements ShouldBroadcastNow
+class BroadcastEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,6 +36,7 @@ class BroadcastEvent implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
+        Log::info('Message being broadcast using queue: '.$this->message);
         return new PrivateChannel($this->channelname);
     }
 
