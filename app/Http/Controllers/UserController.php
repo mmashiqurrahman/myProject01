@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
+use App\Jobs\TestJob;
 use Exception;
 
 class UserController extends Controller
@@ -36,6 +37,8 @@ class UserController extends Controller
 
     public function dashboard() {
         $user = Auth::user();
+        $pause = 2;
+        TestJob::dispatch($pause);
         return view('dashboard', ['user' => $user]);
     }
 
