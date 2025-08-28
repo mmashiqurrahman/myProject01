@@ -18,9 +18,11 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
+              <a class="nav-link" href="{{ route('api.login') }}">API Login</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{ route('role.list') }}">Roles</a>
             </li>
-
             @if (Auth::guest())
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('register.create') }}">Register</a>

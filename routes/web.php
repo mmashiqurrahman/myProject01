@@ -70,6 +70,5 @@ Route::middleware(['authfast'])->group(function() {
 });
 
 
-
-
-
+Route::get('/api-login', [LoginController::class, 'apiLogin'])->name('api.login');
+Route::get('/api-dashboard', [UserController::class, 'apiDashboard'])->name('api.dashboard');

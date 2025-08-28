@@ -66,4 +66,13 @@ class UserController extends Controller
         $user = Auth::user();
         return response()->download($user->image);
     }
+
+    public function apiDashboard() {
+        return view('api.apidashboard');
+    }
+
+    public function profileInfo() {
+        $user = auth('api')->user();
+        return response()->json($user);
+    }
 }
