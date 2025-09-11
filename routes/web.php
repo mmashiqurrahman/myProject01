@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\BroadcastController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Middleware\EnsureUserIsAuthenticated;
 
 /*
@@ -44,6 +45,8 @@ Route::get('/get-users', [UserController::class, 'getUsers'])->name('get.users')
 
 Route::get('/post-list', [PostController::class, 'index'])->name('post.list');
 
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::get('/payment-success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
 
 Route::middleware(['authfast'])->group(function() {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');

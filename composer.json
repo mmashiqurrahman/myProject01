@@ -15,6 +15,7 @@
         "psr/http-message": "^1.1",
         "pusher/pusher-php-server": "^7.2",
         "rap2hpoutre/laravel-log-viewer": "^2.4",
+        "stripe/stripe-php": "^17.6",
         "yajra/laravel-datatables-oracle": "^10.0"
     },
     "require-dev": {
