@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -22,5 +23,11 @@ class CheckoutController extends Controller
 
     public function paymentSuccess() {
         return response()->json('Success!');
+    }
+
+    public function paymentNotified(Request $request) {
+        $intermediate = $request->all();
+        $result = json_encode($intermediate);
+        Log::error($result);
     }
 }
