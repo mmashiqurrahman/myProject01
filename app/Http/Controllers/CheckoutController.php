@@ -28,6 +28,7 @@ class CheckoutController extends Controller
     public function paymentNotified(Request $request) {
         $intermediate = $request->all();
         $result = json_encode($intermediate);
-        Log::error($result);
+        Log::warning('Data has been received');
+	Log::error($result);
     }
 }
