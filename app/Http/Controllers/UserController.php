@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\AiReply;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -20,6 +21,7 @@ class UserController extends Controller
 
     public function dashboard() {
         $user = Auth::user();
-        return view('dashboard', ['user' => $user]);
+        $aiReplies = AiReply::all();
+        return view('dashboard', ['user' => $user, 'aiReplies' => $aiReplies]);
     }
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AiController;
 use App\Http\Middleware\EnsureUserIsAuthenticated;
 
 /*
@@ -27,6 +28,7 @@ Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
+Route::post('/send-to-ai', [AiController::class, 'getReply'])->name('get.reply');
 
 Route::get('/user-list', [UserController::class, 'index'])->name('user.list');
 
