@@ -28,7 +28,7 @@ Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
-Route::post('/send-to-ai', [AiController::class, 'getReply'])->name('get.reply');
+Route::post('/send-to-ai', [AiController::class, 'submitImageWithRequest'])->name('get.reply');
 
 Route::get('/user-list', [UserController::class, 'index'])->name('user.list');
 
